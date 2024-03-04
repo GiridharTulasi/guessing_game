@@ -35,7 +35,7 @@
             </h1>
             <input type="text" class="user-input" id="userInput" />
             <div>
-              <button class="btn btn-info check-guess" onclick="checkGuess()">
+              <button id="checkcheck" class="btn btn-info check-guess" onclick="checkGuess()">
                 Check
               </button>
             </div>
@@ -45,30 +45,35 @@
     </div>
     <script src="/GuessingGame/code.js" ></script>
     <script>
-      let gameResult = document.getElementById("gameResult");
-      let userInput = document.getElementById("userInput");
-      let randomNumber = Math.ceil(Math.random() * 100);
-
-
-      function checkGuess() {
-        let guessedNumber = parseInt(userInput.value);
-        if (guessedNumber > randomNumber) {
-          gameResult.textContent = "Too High! Try Again.";
-          gameResult.style.backgroundColor = "#1e217c";
-        }
-        else if (guessedNumber < randomNumber) {
-          gameResult.textContent = "Too Low! Try Again.";
-          gameResult.style.backgroundColor = "#1e217c";
-        }
-        else if (guessedNumber === randomNumber) {
-          gameResult.textContent = "Congratulations! You got it right.";
-          gameResult.style.backgroundColor = "green";
-        }
-        else {
-          gameResult.textContent = "Please provide a valid input.";
-          gameResult.style.backgroundColor = "#1e217c";
-        }
-      }
+        import canvasConfetti from 'https://cdn.skypack.dev/canvas-confetti';
+          let gameResult = document.getElementById("gameResult");
+          let userInput = document.getElementById("userInput");
+          let randomNumber = Math.ceil(Math.random() * 100);
+    
+    
+          function checkGuess() {
+            let guessedNumber = parseInt(userInput.value);
+            if (guessedNumber > randomNumber) {
+              gameResult.textContent = "Too High! Try Again.";
+              gameResult.style.backgroundColor = "#1e217c";
+            }
+            else if (guessedNumber < randomNumber) {
+              gameResult.textContent = "Too Low! Try Again.";
+              gameResult.style.backgroundColor = "#1e217c";
+            }
+            else if (guessedNumber === randomNumber) {
+              gameResult.textContent = "Congratulations! You got it right.";
+              gameResult.style.backgroundColor = "green";
+              function party(){
+                  canvasConfetti();
+                }
+                document.getElementById("checkcheck").addEventListener('click',party);
+            }
+            else {
+              gameResult.textContent = "Please provide a valid input.";
+              gameResult.style.backgroundColor = "#1e217c";
+            }
+          }
     </script>
 </body>
 </html>
